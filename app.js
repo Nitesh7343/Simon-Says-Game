@@ -33,6 +33,7 @@ function userFlashBtn(btn) {
 
 
 function levelUp() {
+    userSeq = [];
     level++;
     h2.innerText = `Level ${level}`;
 
@@ -44,8 +45,14 @@ function levelUp() {
     flashBtn(rndmBtn);
 }
 
-function checkAns() {
-    
+function checkAns(idx) {
+    if(gameSeq[idx] === userSeq[idx]) {
+        if(gameSeq.length == userSeq.length) {
+            setTimeout(levelUp,1000);
+        }
+    } else {
+        h2.innerText = `Game Over! Press any key start`;
+    }
 }
 
 function btnPress() {
@@ -55,6 +62,8 @@ function btnPress() {
     let userColor = btn.getAttribute("id");
     userSeq.push(userColor);
     console.log(userSeq);
+
+    checkAns(userSeq.length-1);
 }
 
 let allBtns = document.querySelectorAll(".btn");
