@@ -5,8 +5,10 @@ let btns = ["red","yellow","green","purple"];
 
 let started = false;
 let level = 0;
+let highest = 0;
 
 let h2 = document.querySelector("h2");
+let h3 = document.querySelector("h3");
 
 document.addEventListener("keypress",function () {
     if(!started) {
@@ -51,7 +53,17 @@ function checkAns(idx) {
             setTimeout(levelUp,1000);
         }
     } else {
-        h2.innerText = `Game Over! Press any key start`;
+        h2.innerText = `Game Over! Your score is ${level} Press any key start`;
+        document.querySelector("body").style.backgroundColor = "red";
+        setTimeout(function () {
+            document.querySelector("body").style.backgroundColor = "white";
+        },150);
+        
+        if(level > highest) {
+            highest = level;
+        }
+        h3.innerText = `You Highest Score is ${highest}`;
+        reset();
     }
 }
 
@@ -69,4 +81,11 @@ function btnPress() {
 let allBtns = document.querySelectorAll(".btn");
 for(btn of allBtns) {
     btn.addEventListener("click",btnPress);
+}
+
+function reset() {
+    started = false;
+    userSeq = [];
+    gameSeq = [];
+    level = 0;
 }
