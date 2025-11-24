@@ -8,7 +8,7 @@ let level = 0;
 let highest = 0;
 
 let h2 = document.querySelector("h2");
-let h3 = document.querySelector("h3");
+let high = document.querySelector("#highest");
 
 document.addEventListener("keypress",function () {
     if(!started) {
@@ -53,16 +53,23 @@ function checkAns(idx) {
             setTimeout(levelUp,1000);
         }
     } else {
-        h2.innerText = `Game Over! Your score is ${level} Press any key start`;
-        document.querySelector("body").style.backgroundColor = "red";
-        setTimeout(function () {
-            document.querySelector("body").style.backgroundColor = "white";
-        },150);
+        h2.innerText = `Game Over! Your score is ${level} Press any key start again.`;
+        document.querySelector(".purple").classList.add("error");
+        document.querySelector(".red").classList.add("error");
+        document.querySelector(".yellow").classList.add("error");
+        document.querySelector(".green").classList.add("error");
+
+setTimeout(() => {
+    document.querySelector(".purple").classList.remove("error");
+    document.querySelector(".red").classList.remove("error");
+    document.querySelector(".yellow").classList.remove("error");
+    document.querySelector(".green").classList.remove("error");
+},150);
         
         if(level > highest) {
             highest = level;
         }
-        h3.innerText = `You Highest Score is ${highest}`;
+        high.innerText = `You Highest Score is ${highest}`;
         reset();
     }
 }
