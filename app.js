@@ -63,7 +63,7 @@ function checkAns(idx) {
             setTimeout(levelUp,1000);
         }
     } else {
-        h2.innerText = `Game Over! Your score is ${level} Press any key start again.`;
+        h2.innerHTML = `Game Over! Your score is ${level} Press any key start again or <button class="button-85" role="button" id = "restrtBtn">Click Me</button>`;
         document.querySelector(".purple").classList.add("error");
         document.querySelector(".red").classList.add("error");
         document.querySelector(".yellow").classList.add("error");
@@ -82,6 +82,18 @@ setTimeout(() => {
         high.innerText = `You Highest Score is ${highest}`;
         reset();
     }
+    setTimeout(() => {
+    let restrtBtn = document.querySelector("#restrtBtn");
+    restrtBtn.addEventListener("click", function () {
+        console.log("Restart clicked");
+        startGameAgain();
+    });
+}, 50);
+}
+
+function startGameAgain() {
+    reset();
+    levelUp();
 }
 
 function btnPress() {
