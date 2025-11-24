@@ -9,6 +9,16 @@ let highest = 0;
 
 let h2 = document.querySelector("h2");
 let high = document.querySelector("#highest");
+let strtBtn = document.querySelector("#strtBtn");
+
+strtBtn.addEventListener("click",function () {
+    if(!started) {
+        console.log("Game Started");
+        started = true;
+
+        levelUp();
+    };
+});
 
 document.addEventListener("keypress",function () {
     if(!started) {
